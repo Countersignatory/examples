@@ -1,0 +1,23 @@
+{
+  "name": "countersignatory-example-inngest",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "INNGEST_DEV=1 tsx src/server.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "countersignatory": "0.2.0",
+    "express": "^5.1.0",
+    "inngest": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

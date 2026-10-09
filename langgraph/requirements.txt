@@ -1,0 +1,2 @@
+countersignatory==0.2.0
+langgraph>=0.6
