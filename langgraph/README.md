@@ -26,6 +26,8 @@ Type `approve` or `reject` within 30 seconds and the refund is sent or rejected.
 
 `COUNTERSIGNATORY_ORDER=1 python app.py` makes the timeout branch call `cs.order()`. The result carries `order_id`, `checkout_url` for a person with a card, `x402_pay_url` for an agent with a wallet, and `pay_by`. Nothing is paid by this example: the order is unpaid until someone pays it at one of the two links, and it lapses after 30 minutes if nobody does. Once it is paid and answered, read the answer with `cs.get_order(order_id)` and release or cancel the refund yourself.
 
+An identical order from the same key, while the first is still unpaid, returns that same order and does not make a second one. Running the example twice with the same refund gives one `order_id`.
+
 A refused or failed order is returned as `error` with its code and reason, and the refund stays held.
 
 The example uses `InMemorySaver`, so a paused graph is lost when the process exits. Use a durable checkpointer for anything real.

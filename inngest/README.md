@@ -8,7 +8,7 @@ Written by the founder of Countersignatory. One market is live: a screened human
 
 Node 20 or later.
 
-1. Install: `npm install`
+1. Install: `npm ci`
 2. Start the app: `npm run dev`
 3. In a second terminal, start the Inngest dev server: `npx inngest-cli@latest dev -u http://localhost:3000/api/inngest`
 4. In a third, request a refund:
@@ -37,5 +37,7 @@ curl -X POST http://localhost:8288/e/dev -H 'content-type: application/json' -d 
 ## With ordering on
 
 `COUNTERSIGNATORY_ORDER=1 npm run dev` makes the timeout branch call `cs.order()`. The run returns `order_id`, `checkout_url` for a person with a card, `x402_pay_url` for an agent with a wallet, and `pay_by`. Nothing is paid by this example: the order is unpaid until someone pays it at one of the two links, and it lapses after 30 minutes if nobody does. Once it is paid and answered, read the answer with `getOrder(order_id)` and release or cancel the refund yourself.
+
+An identical order from the same key, while the first is still unpaid, returns that same order and does not make a second one. Running the example twice with the same refund gives one `order_id`.
 
 A refused or failed order is returned as `error` with its code and reason, and the refund stays held.
